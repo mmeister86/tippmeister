@@ -31,21 +31,21 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({ onSelect
             <p className="text-sm minecraft-text mb-8 opacity-80">Fange einfach an oder fordere dich selbst heraus wie ein echter Minecraft-Pro!</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <DifficultyCard
-                    title="🌱 " + Difficulty.Beginner}
+                    title={"🌱 " + Difficulty.Beginner}
                     description="Einzelne Buchstaben und einfache Wörter. Perfekt für den Start ins Abenteuer!"
                     icon="🟩"
                     buttonClass="emerald"
                     onClick={() => onSelect(Difficulty.Beginner)}
                 />
                 <DifficultyCard
-                    title="💎 " + Difficulty.Intermediate}
+                    title={"💎 " + Difficulty.Intermediate}
                     description="Ganze Wörter und kurze Sätze. Der nächste Schritt zum Minecraft-Profi!"
                     icon="🟦"
                     buttonClass="diamond"
                     onClick={() => onSelect(Difficulty.Intermediate)}
                 />
                 <DifficultyCard
-                    title="🔥 " + Difficulty.Expert}
+                    title={"🔥 " + Difficulty.Expert}
                     description="Lange Texte mit Zahlen und Satzzeichen. Zeig was ein wahrer Redstone-Meister kann!"
                     icon="🟥"
                     buttonClass="redstone"
