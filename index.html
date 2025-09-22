@@ -265,32 +265,6 @@
         }
       }
 
-      /* Partikel-Effekte */
-      .minecraft-particles {
-        position: fixed;
-        pointer-events: none;
-        z-index: 1000;
-      }
-
-      .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: var(--minecraft-gold);
-        animation: particle-float 2s ease-out forwards;
-      }
-
-      @keyframes particle-float {
-        0% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(-100px) scale(0);
-        }
-      }
-
       /* Progress Bar */
       .minecraft-progress {
         background: var(--minecraft-dark-gray);

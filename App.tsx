@@ -11,7 +11,6 @@ import { Badges } from "./components/Badges";
 import { useTypingGame } from "./hooks/useTypingGame";
 import { generateText } from "./services/textGenerator";
 import { Difficulty, Highscore, Badge } from "./types";
-import { celebrateLevelComplete, showError } from "./utils/particles";
 import { minecraftSounds } from "./utils/sounds";
 
 // Minecraft-themed Badge definitions
@@ -176,9 +175,8 @@ const App: React.FC = () => {
       saveHighscores([...highscores, newHighscore]);
       checkBadges(wpm, accuracy, difficulty);
 
-      // Trigger celebration particles and sound
+      // Trigger celebration sound
       setTimeout(() => {
-        celebrateLevelComplete();
         minecraftSounds.playLevelComplete();
       }, 500);
     }
@@ -192,10 +190,9 @@ const App: React.FC = () => {
     checkBadges,
   ]);
 
-  // Effect for error feedback - nur Sound, keine Partikel für bessere Performance
+  // Effect for error feedback - nur Sound
   useEffect(() => {
     if (errorFlash) {
-      // showError(); // Entfernt für bessere Performance
       minecraftSounds.playError();
     }
   }, [errorFlash]);
