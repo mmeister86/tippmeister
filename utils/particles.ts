@@ -39,46 +39,41 @@ export class ParticleSystem {
     const colors = [
       "var(--minecraft-gold)",
       "var(--minecraft-emerald)",
-      "var(--minecraft-diamond)",
     ];
-    const emojis = ["✨", "⭐", "💎", "🌟"];
+    const emojis = ["✨", "⭐"];
 
-    for (let i = 0; i < 15; i++) {
+    // Drastisch reduziert: nur 3 Partikel für 0.5 Sekunden
+    for (let i = 0; i < 3; i++) {
       this.addParticle({
-        x: x + (Math.random() - 0.5) * 100,
-        y: y + (Math.random() - 0.5) * 50,
-        vx: (Math.random() - 0.5) * 4,
-        vy: -Math.random() * 3 - 2,
-        life: 120,
-        maxLife: 120,
-        size: Math.random() * 8 + 4,
+        x: x + (Math.random() - 0.5) * 30,
+        y: y + (Math.random() - 0.5) * 20,
+        vx: (Math.random() - 0.5) * 2,
+        vy: -Math.random() * 2 - 1,
+        life: 30, // 0.5 Sekunden bei 60fps
+        maxLife: 30,
+        size: Math.random() * 4 + 3,
         color: colors[Math.floor(Math.random() * colors.length)],
-        emoji:
-          Math.random() > 0.7
-            ? emojis[Math.floor(Math.random() * emojis.length)]
-            : undefined,
+        emoji: Math.random() > 0.5 ? emojis[Math.floor(Math.random() * emojis.length)] : undefined,
       });
     }
   }
 
   createErrorParticles(x: number, y: number) {
-    const colors = ["var(--minecraft-redstone)", "var(--minecraft-lava)"];
-    const emojis = ["💥", "❌", "⚡"];
+    const colors = ["var(--minecraft-redstone)"];
+    const emojis = ["💥"];
 
-    for (let i = 0; i < 8; i++) {
+    // Stark reduziert: nur 2 Partikel für 0.5 Sekunden
+    for (let i = 0; i < 2; i++) {
       this.addParticle({
-        x: x + (Math.random() - 0.5) * 60,
-        y: y + (Math.random() - 0.5) * 30,
-        vx: (Math.random() - 0.5) * 3,
-        vy: -Math.random() * 2 - 1,
-        life: 60,
-        maxLife: 60,
-        size: Math.random() * 6 + 3,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        emoji:
-          Math.random() > 0.5
-            ? emojis[Math.floor(Math.random() * emojis.length)]
-            : undefined,
+        x: x + (Math.random() - 0.5) * 20,
+        y: y + (Math.random() - 0.5) * 15,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: -Math.random() * 1.5 - 0.5,
+        life: 30, // 0.5 Sekunden bei 60fps
+        maxLife: 30,
+        size: Math.random() * 3 + 2,
+        color: colors[0],
+        emoji: Math.random() > 0.3 ? emojis[0] : undefined,
       });
     }
   }
@@ -88,20 +83,18 @@ export class ParticleSystem {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    for (let i = 0; i < 50; i++) {
+    // Massiv reduziert: nur 5 Partikel für 1 Sekunde
+    for (let i = 0; i < 5; i++) {
       this.addParticle({
-        x: centerX + (Math.random() - 0.5) * 200,
-        y: centerY + (Math.random() - 0.5) * 100,
-        vx: (Math.random() - 0.5) * 6,
-        vy: -Math.random() * 4 - 3,
-        life: 180,
-        maxLife: 180,
-        size: Math.random() * 12 + 6,
-        color:
-          Math.random() > 0.5
-            ? "var(--minecraft-gold)"
-            : "var(--minecraft-emerald)",
-        emoji: ["🎉", "🏆", "⭐", "💎", "✨"][Math.floor(Math.random() * 5)],
+        x: centerX + (Math.random() - 0.5) * 80,
+        y: centerY + (Math.random() - 0.5) * 40,
+        vx: (Math.random() - 0.5) * 3,
+        vy: -Math.random() * 2 - 1,
+        life: 60, // 1 Sekunde bei 60fps
+        maxLife: 60,
+        size: Math.random() * 6 + 4,
+        color: Math.random() > 0.5 ? "var(--minecraft-gold)" : "var(--minecraft-emerald)",
+        emoji: ["🎉", "🏆"][Math.floor(Math.random() * 2)],
       });
     }
   }
@@ -164,21 +157,20 @@ export class ParticleSystem {
   }
 
   private updateParticles() {
+    // Performance-optimiert: weniger DOM-Manipulationen
     this.particles = this.particles.filter((particle) => {
       particle.life--;
       particle.x += particle.vx;
       particle.y += particle.vy;
-      particle.vy += 0.1; // gravity
+      particle.vy += 0.05; // reduzierte Gravity
 
       const element = document.getElementById(`particle-${particle.id}`);
-      if (element) {
+      if (element && particle.life > 0) {
         const opacity = particle.life / particle.maxLife;
-        const scale = 0.5 + opacity * 0.5;
-
-        element.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        
+        // Weniger CSS-Updates für bessere Performance
         element.style.opacity = opacity.toString();
-        element.style.left = `${particle.x}px`;
-        element.style.top = `${particle.y}px`;
+        element.style.transform = `translate(${particle.x - particle.size/2}px, ${particle.y - particle.size/2}px)`;
       }
 
       if (particle.life <= 0) {

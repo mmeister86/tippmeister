@@ -192,10 +192,10 @@ const App: React.FC = () => {
     checkBadges,
   ]);
 
-  // Effect for error feedback
+  // Effect for error feedback - nur Sound, keine Partikel für bessere Performance
   useEffect(() => {
     if (errorFlash) {
-      showError();
+      // showError(); // Entfernt für bessere Performance
       minecraftSounds.playError();
     }
   }, [errorFlash]);
