@@ -36,10 +36,7 @@ export class ParticleSystem {
   }
 
   createSuccessParticles(x: number, y: number) {
-    const colors = [
-      "var(--minecraft-gold)",
-      "var(--minecraft-emerald)",
-    ];
+    const colors = ["var(--minecraft-gold)", "var(--minecraft-emerald)"];
     const emojis = ["✨", "⭐"];
 
     // Drastisch reduziert: nur 3 Partikel für 0.5 Sekunden
@@ -53,7 +50,10 @@ export class ParticleSystem {
         maxLife: 30,
         size: Math.random() * 4 + 3,
         color: colors[Math.floor(Math.random() * colors.length)],
-        emoji: Math.random() > 0.5 ? emojis[Math.floor(Math.random() * emojis.length)] : undefined,
+        emoji:
+          Math.random() > 0.5
+            ? emojis[Math.floor(Math.random() * emojis.length)]
+            : undefined,
       });
     }
   }
@@ -93,7 +93,10 @@ export class ParticleSystem {
         life: 60, // 1 Sekunde bei 60fps
         maxLife: 60,
         size: Math.random() * 6 + 4,
-        color: Math.random() > 0.5 ? "var(--minecraft-gold)" : "var(--minecraft-emerald)",
+        color:
+          Math.random() > 0.5
+            ? "var(--minecraft-gold)"
+            : "var(--minecraft-emerald)",
         emoji: ["🎉", "🏆"][Math.floor(Math.random() * 2)],
       });
     }
@@ -167,10 +170,12 @@ export class ParticleSystem {
       const element = document.getElementById(`particle-${particle.id}`);
       if (element && particle.life > 0) {
         const opacity = particle.life / particle.maxLife;
-        
+
         // Weniger CSS-Updates für bessere Performance
         element.style.opacity = opacity.toString();
-        element.style.transform = `translate(${particle.x - particle.size/2}px, ${particle.y - particle.size/2}px)`;
+        element.style.transform = `translate(${
+          particle.x - particle.size / 2
+        }px, ${particle.y - particle.size / 2}px)`;
       }
 
       if (particle.life <= 0) {
