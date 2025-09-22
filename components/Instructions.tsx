@@ -1,52 +1,179 @@
-import React from 'react';
+import React from "react";
 
-const FingerIcon = ({ color }: { color: string }) => (
-    <div className={`w-5 h-5 rounded-full ${color} inline-block mr-2 border-2 border-white/50`}></div>
-);
+const FingerIcon = ({
+  fingerType,
+}: {
+  fingerType: "pinky" | "ring" | "middle" | "index" | "thumb";
+}) => {
+  const colors = {
+    pinky: "var(--minecraft-redstone)",
+    ring: "var(--minecraft-gold)",
+    middle: "var(--minecraft-sand)",
+    index: "var(--minecraft-emerald)",
+    thumb: "var(--minecraft-diamond)",
+  };
+
+  return (
+    <div
+      className="minecraft-inventory-slot inline-block mr-2"
+      style={{ background: colors[fingerType], width: "24px", height: "24px" }}
+    ></div>
+  );
+};
 
 export const Instructions: React.FC = () => {
-    return (
-        <div className="w-full max-w-3xl mx-auto space-y-8 text-slate-700">
-            <div className="text-center">
-                <h2 className="text-4xl font-bold text-slate-700">Anleitung</h2>
-                <p className="text-slate-500 mt-2">So wirst du zum Tipp-Champion!</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-2xl font-bold text-sky-600 mb-3">1. Die Grundstellung</h3>
-                <p className="mb-4">
-                    Lege deine Finger auf die "Grundreihe" der Tastatur. Das ist die mittlere Buchstabenreihe.
-                    Deine linken Finger gehören auf <span className="font-bold">A, S, D, F</span> und deine rechten Finger auf <span className="font-bold">J, K, L, Ö</span>.
-                    Die kleinen Erhebungen auf den Tasten <span className="font-bold">F</span> und <span className="font-bold">J</span> helfen dir, die richtige Position zu finden, ohne hinzuschauen.
-                    Deine Daumen schweben über der Leertaste.
-                </p>
-                <div className="bg-slate-200 p-4 rounded-lg text-center font-mono text-xl tracking-widest">
-                    <span className="text-red-500">A</span> <span className="text-orange-500">S</span> <span className="text-yellow-500">D</span> <span className="text-green-500">F</span> &nbsp;&nbsp;&nbsp;&nbsp; <span className="text-green-500">J</span> <span className="text-yellow-500">K</span> <span className="text-orange-500">L</span> <span className="text-red-500">Ö</span>
-                </div>
-            </div>
-
-             <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-2xl font-bold text-green-600 mb-3">2. Das Spielprinzip</h3>
-                <p className="mb-4">
-                    Wähle zuerst einen Schwierigkeitsgrad. Dann erscheint ein Text, den du abtippen sollst.
-                    Die virtuelle Tastatur unten zeigt dir, welche Taste als nächstes gedrückt werden muss und mit welchem Finger. Achte auf die Farben!
-                </p>
-                <ul className="list-none space-y-2">
-                    <li><FingerIcon color="bg-red-300" /> Kleiner Finger</li>
-                    <li><FingerIcon color="bg-orange-300" /> Ringfinger</li>
-                    <li><FingerIcon color="bg-yellow-300" /> Mittelfinger</li>
-                    <li><FingerIcon color="bg-green-300" /> Zeigefinger</li>
-                    <li><FingerIcon color="bg-blue-300" /> Daumen (für die Leertaste)</li>
-                </ul>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-2xl font-bold text-purple-600 mb-3">3. Ziel des Spiels</h3>
-                <p>
-                    Versuche, den Text so schnell und fehlerfrei wie möglich zu tippen. Deine Geschwindigkeit (WPM - Wörter pro Minute) und deine Genauigkeit werden gemessen.
-                    Übung macht den Meister! Je öfter du spielst, desto schneller und sicherer wirst du. Viel Erfolg!
-                </p>
-            </div>
+  return (
+    <div className="w-full max-w-4xl mx-auto space-y-6">
+      <div className="text-center">
+        <div
+          className="minecraft-inventory-slot mx-auto mb-4"
+          style={{
+            width: "64px",
+            height: "64px",
+            background: "var(--minecraft-emerald)",
+          }}
+        >
+          <span style={{ fontSize: "32px" }}>📚</span>
         </div>
-    );
+        <h2 className="text-2xl font-bold minecraft-text">
+          📖 Minecraft Tipp-Guide
+        </h2>
+        <p className="text-sm minecraft-text opacity-80 mt-2">
+          So wirst du zum Redstone-Tipper-Meister!
+        </p>
+      </div>
+
+      <div className="minecraft-panel">
+        <div
+          className="minecraft-inventory-slot mb-4"
+          style={{
+            background: "var(--minecraft-grass)",
+            width: "48px",
+            height: "48px",
+          }}
+        >
+          <span style={{ fontSize: "24px" }}>1️⃣</span>
+        </div>
+        <h3
+          className="text-lg font-bold minecraft-text mb-3"
+          style={{ color: "var(--minecraft-emerald)" }}
+        >
+          Die Grundstellung (Home Row)
+        </h3>
+        <p className="minecraft-text text-sm mb-4 opacity-90">
+          Lege deine Finger auf die mittlere Reihe der Tastatur - das ist deine
+          "Basis" wie in Minecraft! Linke Finger:{" "}
+          <span
+            className="font-bold"
+            style={{ color: "var(--minecraft-gold)" }}
+          >
+            A, S, D, F
+          </span>{" "}
+          | Rechte Finger:{" "}
+          <span
+            className="font-bold"
+            style={{ color: "var(--minecraft-gold)" }}
+          >
+            J, K, L, Ö
+          </span>
+        </p>
+        <div
+          className="minecraft-panel text-center minecraft-font text-lg tracking-widest"
+          style={{ background: "var(--minecraft-black)", padding: "16px" }}
+        >
+          <span style={{ color: "var(--minecraft-redstone)" }}>A</span>
+          <span style={{ color: "var(--minecraft-gold)" }}>S</span>
+          <span style={{ color: "var(--minecraft-sand)" }}>D</span>
+          <span style={{ color: "var(--minecraft-emerald)" }}>F</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span style={{ color: "var(--minecraft-emerald)" }}>J</span>
+          <span style={{ color: "var(--minecraft-sand)" }}>K</span>
+          <span style={{ color: "var(--minecraft-gold)" }}>L</span>
+          <span style={{ color: "var(--minecraft-redstone)" }}>Ö</span>
+        </div>
+      </div>
+
+      <div className="minecraft-panel">
+        <div
+          className="minecraft-inventory-slot mb-4"
+          style={{
+            background: "var(--minecraft-diamond)",
+            width: "48px",
+            height: "48px",
+          }}
+        >
+          <span style={{ fontSize: "24px" }}>2️⃣</span>
+        </div>
+        <h3
+          className="text-lg font-bold minecraft-text mb-3"
+          style={{ color: "var(--minecraft-diamond)" }}
+        >
+          Das Minecraft-Tippen
+        </h3>
+        <p className="minecraft-text text-sm mb-4 opacity-90">
+          Wähle ein Level aus! Die Minecraft-Tastatur zeigt dir, welche Taste du
+          drücken musst. Jeder Finger hat seine eigene Farbe - wie verschiedene
+          Minecraft-Blöcke!
+        </p>
+        <div className="space-y-2">
+          <div className="flex items-center">
+            <FingerIcon fingerType="pinky" />
+            <span className="minecraft-text text-xs">
+              Kleiner Finger - Redstone Rot
+            </span>
+          </div>
+          <div className="flex items-center">
+            <FingerIcon fingerType="ring" />
+            <span className="minecraft-text text-xs">Ringfinger - Gold</span>
+          </div>
+          <div className="flex items-center">
+            <FingerIcon fingerType="middle" />
+            <span className="minecraft-text text-xs">Mittelfinger - Sand</span>
+          </div>
+          <div className="flex items-center">
+            <FingerIcon fingerType="index" />
+            <span className="minecraft-text text-xs">
+              Zeigefinger - Smaragd
+            </span>
+          </div>
+          <div className="flex items-center">
+            <FingerIcon fingerType="thumb" />
+            <span className="minecraft-text text-xs">
+              Daumen - Diamant (Leertaste)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="minecraft-panel">
+        <div
+          className="minecraft-inventory-slot mb-4"
+          style={{
+            background: "var(--minecraft-gold)",
+            width: "48px",
+            height: "48px",
+          }}
+        >
+          <span style={{ fontSize: "24px" }}>3️⃣</span>
+        </div>
+        <h3
+          className="text-lg font-bold minecraft-text mb-3"
+          style={{ color: "var(--minecraft-gold)" }}
+        >
+          Ziel: Werde zum Typing-Champion!
+        </h3>
+        <p className="minecraft-text text-sm opacity-90">
+          Tippe so schnell und genau wie möglich! Sammle XP (WPM) und erreiche
+          100% Genauigkeit. Je mehr du übst, desto schneller wirst du - wie beim
+          Minecraft bauen!
+          <span
+            style={{ color: "var(--minecraft-emerald)" }}
+            className="font-bold"
+          >
+            Viel Erfolg, Crafter!
+          </span>
+        </p>
+      </div>
+    </div>
+  );
 };
