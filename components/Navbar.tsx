@@ -13,10 +13,6 @@ const NavItem: React.FC<{
   onClick: () => void;
 }> = ({ label, isActive, onClick }) => {
   const handleClick = () => {
-    // Import sound effects
-    import("../utils/sounds").then(({ minecraftSounds }) => {
-      minecraftSounds.playButtonClick();
-    });
     onClick();
   };
 

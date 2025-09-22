@@ -11,7 +11,6 @@ import { Badges } from "./components/Badges";
 import { useTypingGame } from "./hooks/useTypingGame";
 import { generateText } from "./services/textGenerator";
 import { Difficulty, Highscore, Badge } from "./types";
-import { minecraftSounds } from "./utils/sounds";
 
 // Minecraft-themed Badge definitions
 const initialBadges: Badge[] = [
@@ -174,11 +173,6 @@ const App: React.FC = () => {
       };
       saveHighscores([...highscores, newHighscore]);
       checkBadges(wpm, accuracy, difficulty);
-
-      // Trigger celebration sound
-      setTimeout(() => {
-        minecraftSounds.playLevelComplete();
-      }, 500);
     }
   }, [
     gameState,
@@ -190,13 +184,6 @@ const App: React.FC = () => {
     checkBadges,
   ]);
 
-  // Effect for error feedback - nur Sound
-  useEffect(() => {
-    if (errorFlash) {
-      minecraftSounds.playError();
-    }
-  }, [errorFlash]);
-
   // Keyboard event listener
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -206,7 +193,6 @@ const App: React.FC = () => {
   }, [handleKeyDown]);
 
   const handleSelectDifficulty = (selectedDifficulty: Difficulty) => {
-    minecraftSounds.playButtonClick();
     setDifficulty(selectedDifficulty);
     const newText = generateText(selectedDifficulty);
     startGame(newText);
