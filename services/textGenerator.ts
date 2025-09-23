@@ -23,7 +23,7 @@ const texts = {
   ],
   [Difficulty.Expert]: [
     "Die Redstone-Automation verändert deine Minecraft-Welt mit einer Geschwindigkeit von 20 Ticks/Sekunde!",
-    "Frage nicht, was der Server für dich tun kann, frage, was du für deinen Server tun kannst.",
+    "Frage nicht, was der Server für dich tun kann – frage, was du für deinen Server tun kannst.",
     "Die komplexen Command-Blocks (z.B. für /tp @p ~ ~10 ~) erfordern präzises Tippen & logisches Denken.",
     "Beim Testen der Redstone-Maschine wurden diverse Bugs gefunden, die jetzt behoben werden müssen (Version 1.20.4).",
     "Das QWERTZ-Tastatur-Layout ist wichtig für Commands; du musst Zeichen wie §, @, ~ und # beherrschen!",
