@@ -1,20 +1,87 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<img width="1200" height="475" alt="Tippmeister Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# 🎮 Tippmeister - Minecraft Tippspiel
 
-This contains everything you need to run your app locally.
+Ein unterhaltsames und anspruchsvolles Tippspiel im Minecraft-Design, das dir hilft, deine Tippgeschwindigkeit und -genauigkeit zu verbessern.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1Rv7v6kb-j7D0fOTqZx9MaBysv4rbfdAA
+## 🚀 Features
 
-## Run Locally
+### 🎯 Verschiedene Schwierigkeitsgrade
 
-**Prerequisites:**  Node.js
+- **Anfänger**: Einfache deutsche Wörter und Minecraft-Grundbegriffe
+- **Fortgeschritten**: Komplexere Sätze mit deutschen Umlauten
+- **Experte**: Herausfordernde Texte mit Sonderzeichen und Zahlen
 
+### 🏆 Gamification
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Badges & Achievements**: Sammle Minecraft-thematisierte Abzeichen
+- **Highscores**: Speichere deine besten Ergebnisse
+- **Fortschrittsverfolgung**: Verfolge deine WPM, Genauigkeit und Statistiken
+
+### ⌨️ Übungsmodus
+
+- **Fingerübungen**: Trainiere spezifische Finger und Tasten
+- **Charakter-Sets**: Verschiedene Übungsmodi (Buchstaben, Zahlen, Sonderzeichen)
+- **Deutsche Tastatur**: Optimiert für QWERTZ-Layout und deutsche Umlaute
+
+### 🎨 Minecraft-Design
+
+- Authentisches Minecraft-UI mit pixeligen Grafiken
+- Animierte Tastatur mit visuellen Rückmeldungen
+- Responsive Design für Desktop und Mobile
+
+## 🛠️ Technische Details
+
+- **Framework**: React 19 mit TypeScript
+- **Build Tool**: Vite
+- **Styling**: CSS mit Minecraft-inspirierten Variablen
+- **Speicher**: LocalStorage für Highscores und Badges
+- **Zielgruppe**: Deutsche Nutzer mit QWERTZ-Tastatur
+
+## 📦 Installation & Setup
+
+**Voraussetzungen:** Node.js (Version 16 oder höher)
+
+1. **Dependencies installieren:**
+
+   ```bash
+   npm install
+   ```
+
+2. **Entwicklungsserver starten:**
+
+   ```bash
+   npm run dev
+   ```
+
+3. **Produktions-Build erstellen:**
+
+   ```bash
+   npm run build
+   ```
+
+4. **Build-Vorschau:**
+   ```bash
+   npm run preview
+   ```
+
+## 🎮 Wie es funktioniert
+
+1. **Schwierigkeitsgrad wählen** aus drei Minecraft-Leveln
+2. **Text tippen** - der Text wird zufällig aus dem gewählten Schwierigkeitsgrad ausgewählt
+3. **Statistiken verfolgen** - WPM, Genauigkeit und Fehler werden live angezeigt
+4. **Badges sammeln** - erreiche bestimmte Ziele um Abzeichen zu erhalten
+5. **Übungsmodus nutzen** - verbessere deine Schwachstellen mit gezielten Übungen
+
+## 🏅 Badges & Achievements
+
+- **🌱 Sprössling Schreiber**: 40 WPM im Anfänger-Level
+- **⚡ Redstone Rekord**: 60 WPM im Fortgeschritten-Level
+- **🔥 Enderdrachen Tipper**: 80 WPM im Experten-Level
+- **🎯 Bogenschütze**: 95% Genauigkeit
+- **💎 Perfekter Crafter**: 100% Genauigkeit (null Fehler)
+- **🛡️ Ausdauer-Krieger**: 10 Spiele gespielt
+
+Viel Spaß beim Tippen! 🎯⚡
