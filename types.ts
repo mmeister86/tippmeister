@@ -22,3 +22,49 @@ export interface Badge {
     metric: 'wpm' | 'accuracy' | 'totalTyped' | 'gamesPlayed' | 'combo';
     difficulty?: Difficulty;
 }
+
+export enum PracticeMode {
+    Letters = 'letters',
+    LettersNumbers = 'letters-numbers',
+    FullCharset = 'full-charset',
+    German = 'german',
+    Minecraft = 'minecraft'
+}
+
+export enum PracticeDisplayMode {
+    Single = 'single',
+    Sequence = 'sequence',
+    Rain = 'rain',
+    Rhythm = 'rhythm'
+}
+
+export interface PracticeSettings {
+    mode: PracticeMode;
+    displayMode: PracticeDisplayMode;
+    speed: number;
+    showKeyboard: boolean;
+    soundEnabled: boolean;
+    particlesEnabled: boolean;
+    sequenceLength?: number;
+    rhythmInterval?: number;
+}
+
+export interface PracticeStats {
+    charactersTyped: number;
+    correctCharacters: number;
+    wpm: number;
+    accuracy: number;
+    sessionTime: number;
+    characterBreakdown: Record<string, { correct: number; total: number }>;
+    problematicKeys: string[];
+    streak: number;
+    bestStreak: number;
+}
+
+export interface PracticeSession {
+    id: string;
+    startTime: Date;
+    endTime?: Date;
+    settings: PracticeSettings;
+    finalStats: PracticeStats;
+}

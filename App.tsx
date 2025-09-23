@@ -8,6 +8,7 @@ import { Modal } from "./components/Modal";
 import { Highscores } from "./components/Highscores";
 import { Instructions } from "./components/Instructions";
 import { Badges } from "./components/Badges";
+import { PracticeArea } from "./components/PracticeArea";
 import { useTypingGame } from "./hooks/useTypingGame";
 import { generateText } from "./services/textGenerator";
 import { Difficulty, Highscore, Badge } from "./types";
@@ -242,6 +243,8 @@ const App: React.FC = () => {
         return <Instructions />;
       case "badges":
         return <Badges badges={badges} />;
+      case "practice":
+        return <PracticeArea />;
       default:
         return <DifficultySelector onSelect={handleSelectDifficulty} />;
     }

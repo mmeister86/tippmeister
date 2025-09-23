@@ -1,6 +1,6 @@
 import React from "react";
 
-export type View = "menu" | "game" | "highscores" | "instructions" | "badges";
+export type View = "menu" | "game" | "highscores" | "instructions" | "badges" | "practice";
 
 interface NavbarProps {
   currentView: View;
@@ -50,6 +50,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             label="⚔ Spiel"
             isActive={currentView === "menu" || currentView === "game"}
             onClick={() => setView("menu")}
+          />
+          <NavItem
+            label="🏗 Übungsplatz"
+            isActive={currentView === "practice"}
+            onClick={() => setView("practice")}
           />
           <NavItem
             label="🏆 Bestenliste"
