@@ -1,5 +1,9 @@
 import React from "react";
-import { PracticeMode, PracticeDisplayMode, PracticeSettings as PracticeSettingsType } from "../types";
+import {
+  PracticeMode,
+  PracticeDisplayMode,
+  PracticeSettings as PracticeSettingsType,
+} from "../types";
 
 interface PracticeSettingsProps {
   settings: PracticeSettingsType;
@@ -16,27 +20,27 @@ const ModeSelector: React.FC<{
     {
       key: PracticeMode.Letters,
       label: "🔤 Nur Buchstaben",
-      description: "A-Z, a-z"
+      description: "A-Z, a-z",
     },
     {
       key: PracticeMode.LettersNumbers,
       label: "🔢 Buchstaben + Zahlen",
-      description: "A-Z, a-z, 0-9"
+      description: "A-Z, a-z, 0-9",
     },
     {
       key: PracticeMode.German,
       label: "🇩🇪 Deutsch",
-      description: "Mit Umlauten ä, ö, ü, ß"
+      description: "Mit Umlauten ä, ö, ü, ß",
     },
     {
       key: PracticeMode.Minecraft,
       label: "⚡ Gaming",
-      description: "WASD + Gaming-Zeichen"
+      description: "WASD + Gaming-Zeichen",
     },
     {
       key: PracticeMode.FullCharset,
       label: "🎯 Vollständig",
-      description: "Alle Zeichen + Sonderzeichen"
+      description: "Alle Zeichen + Sonderzeichen",
     },
   ];
 
@@ -53,10 +57,10 @@ const ModeSelector: React.FC<{
             disabled={disabled}
             className={`minecraft-button text-left p-3 transition-all ${
               currentMode === mode.key
-                ? 'emerald shadow-emerald-500/50'
+                ? "emerald shadow-emerald-500/50"
                 : disabled
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-gray-600'
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-600"
             }`}
           >
             <div className="font-bold">{mode.label}</div>
@@ -77,22 +81,17 @@ const DisplayModeSelector: React.FC<{
     {
       key: PracticeDisplayMode.Single,
       label: "📱 Einzelzeichen",
-      description: "Ein Zeichen nach dem anderen"
+      description: "Ein Zeichen nach dem anderen",
     },
     {
       key: PracticeDisplayMode.Sequence,
       label: "📊 Sequenz",
-      description: "Mehrere Zeichen gleichzeitig"
-    },
-    {
-      key: PracticeDisplayMode.Rain,
-      label: "🌧 Zeichenregen",
-      description: "Fallende Zeichen abfangen"
+      description: "Mehrere Zeichen gleichzeitig",
     },
     {
       key: PracticeDisplayMode.Rhythm,
       label: "🎵 Rhythmus",
-      description: "Im Takt tippen"
+      description: "Im Takt tippen",
     },
   ];
 
@@ -109,10 +108,10 @@ const DisplayModeSelector: React.FC<{
             disabled={disabled}
             className={`minecraft-button text-left p-3 transition-all ${
               currentMode === mode.key
-                ? 'emerald shadow-emerald-500/50'
+                ? "emerald shadow-emerald-500/50"
                 : disabled
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-gray-600'
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-600"
             }`}
           >
             <div className="font-bold">{mode.label}</div>
@@ -153,7 +152,7 @@ const SpeedControl: React.FC<{
               #10b981 0%,
               #10b981 ${((speed - 0.5) / (3 - 0.5)) * 100}%,
               #4b5563 ${((speed - 0.5) / (3 - 0.5)) * 100}%,
-              #4b5563 100%)`
+              #4b5563 100%)`,
           }}
         />
         <div className="text-center">
@@ -182,7 +181,9 @@ const VisualSettings: React.FC<{
           <input
             type="checkbox"
             checked={settings.showKeyboard}
-            onChange={(e) => onSettingsChange({ showKeyboard: e.target.checked })}
+            onChange={(e) =>
+              onSettingsChange({ showKeyboard: e.target.checked })
+            }
             disabled={disabled}
             className="w-4 h-4 text-emerald-600 bg-gray-700 border-gray-600 rounded focus:ring-emerald-500"
           />
@@ -194,7 +195,9 @@ const VisualSettings: React.FC<{
           <input
             type="checkbox"
             checked={settings.soundEnabled}
-            onChange={(e) => onSettingsChange({ soundEnabled: e.target.checked })}
+            onChange={(e) =>
+              onSettingsChange({ soundEnabled: e.target.checked })
+            }
             disabled={disabled}
             className="w-4 h-4 text-emerald-600 bg-gray-700 border-gray-600 rounded focus:ring-emerald-500"
           />
@@ -206,7 +209,9 @@ const VisualSettings: React.FC<{
           <input
             type="checkbox"
             checked={settings.particlesEnabled}
-            onChange={(e) => onSettingsChange({ particlesEnabled: e.target.checked })}
+            onChange={(e) =>
+              onSettingsChange({ particlesEnabled: e.target.checked })
+            }
             disabled={disabled}
             className="w-4 h-4 text-emerald-600 bg-gray-700 border-gray-600 rounded focus:ring-emerald-500"
           />
@@ -239,7 +244,9 @@ const AdvancedSettings: React.FC<{
               min="3"
               max="10"
               value={settings.sequenceLength || 5}
-              onChange={(e) => onSettingsChange({ sequenceLength: parseInt(e.target.value) })}
+              onChange={(e) =>
+                onSettingsChange({ sequenceLength: parseInt(e.target.value) })
+              }
               disabled={disabled}
               className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
             />
@@ -250,7 +257,8 @@ const AdvancedSettings: React.FC<{
         {settings.displayMode === PracticeDisplayMode.Rhythm && (
           <div>
             <label className="block minecraft-text text-sm mb-2">
-              🎵 Rhythmus: {((settings.rhythmInterval || 1000) / 1000).toFixed(1)}s
+              🎵 Rhythmus:{" "}
+              {((settings.rhythmInterval || 1000) / 1000).toFixed(1)}s
             </label>
             <input
               type="range"
@@ -258,7 +266,9 @@ const AdvancedSettings: React.FC<{
               max="3000"
               step="100"
               value={settings.rhythmInterval || 1000}
-              onChange={(e) => onSettingsChange({ rhythmInterval: parseInt(e.target.value) })}
+              onChange={(e) =>
+                onSettingsChange({ rhythmInterval: parseInt(e.target.value) })
+              }
               disabled={disabled}
               className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
             />

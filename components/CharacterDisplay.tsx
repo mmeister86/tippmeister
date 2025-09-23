@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { PracticeDisplayMode } from "../types";
 
 interface CharacterDisplayProps {
   currentCharacter: string;
   currentSequence: Array<{
     character: string;
-    status: 'completed' | 'current' | 'upcoming';
+    status: "completed" | "current" | "upcoming";
   }>;
   displayMode: PracticeDisplayMode;
   errorFlash: boolean;
   particleEffect: { x: number; y: number; character: string } | null;
+  isActive?: boolean;
 }
 
 const SingleCharacterDisplay: React.FC<{
@@ -22,19 +23,19 @@ const SingleCharacterDisplay: React.FC<{
       <div
         className={`minecraft-inventory-slot text-6xl font-bold transition-all duration-200 ${
           errorFlash
-            ? 'bg-red-500 shadow-red-500/50 shadow-lg'
-            : 'bg-gradient-to-br from-green-400 to-emerald-600 shadow-emerald-500/50 shadow-lg'
+            ? "bg-red-500 shadow-red-500/50 shadow-lg"
+            : "bg-gradient-to-br from-green-400 to-emerald-600 shadow-emerald-500/50 shadow-lg"
         }`}
         style={{
-          width: '150px',
-          height: '150px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '4px solid #8B4513',
-          borderRadius: '8px',
-          position: 'relative',
-          transform: errorFlash ? 'scale(1.1)' : 'scale(1.0)',
+          width: "150px",
+          height: "150px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "4px solid #8B4513",
+          borderRadius: "8px",
+          position: "relative",
+          transform: errorFlash ? "scale(1.1)" : "scale(1.0)",
         }}
       >
         <span className="text-white drop-shadow-lg font-minecraft">
@@ -53,7 +54,7 @@ const SingleCharacterDisplay: React.FC<{
           style={{
             left: `${particleEffect.x}%`,
             top: `${particleEffect.y}%`,
-            animation: 'particleFade 1s ease-out forwards',
+            animation: "particleFade 1s ease-out forwards",
           }}
         >
           ✨ {particleEffect.character}
@@ -80,36 +81,36 @@ const SingleCharacterDisplay: React.FC<{
 const SequenceDisplay: React.FC<{
   sequence: Array<{
     character: string;
-    status: 'completed' | 'current' | 'upcoming';
+    status: "completed" | "current" | "upcoming";
   }>;
   errorFlash: boolean;
 }> = ({ sequence, errorFlash }) => {
   return (
     <div className="flex justify-center items-center gap-3">
       {sequence.map((item, index) => {
-        let bgColor = 'bg-gray-600';
-        let textColor = 'text-gray-300';
-        let scale = 'scale-90';
-        let shadow = '';
+        let bgColor = "bg-gray-600";
+        let textColor = "text-gray-300";
+        let scale = "scale-90";
+        let shadow = "";
 
         switch (item.status) {
-          case 'completed':
-            bgColor = 'bg-green-600';
-            textColor = 'text-white';
-            scale = 'scale-75';
-            shadow = 'shadow-green-500/30';
+          case "completed":
+            bgColor = "bg-green-600";
+            textColor = "text-white";
+            scale = "scale-75";
+            shadow = "shadow-green-500/30";
             break;
-          case 'current':
-            bgColor = errorFlash ? 'bg-red-500' : 'bg-blue-500';
-            textColor = 'text-white';
-            scale = 'scale-110';
-            shadow = errorFlash ? 'shadow-red-500/50' : 'shadow-blue-500/50';
+          case "current":
+            bgColor = errorFlash ? "bg-red-500" : "bg-blue-500";
+            textColor = "text-white";
+            scale = "scale-110";
+            shadow = errorFlash ? "shadow-red-500/50" : "shadow-blue-500/50";
             break;
-          case 'upcoming':
-            bgColor = 'bg-amber-500';
-            textColor = 'text-white';
-            scale = 'scale-90';
-            shadow = 'shadow-amber-500/30';
+          case "upcoming":
+            bgColor = "bg-amber-500";
+            textColor = "text-white";
+            scale = "scale-90";
+            shadow = "shadow-amber-500/30";
             break;
         }
 
@@ -118,60 +119,19 @@ const SequenceDisplay: React.FC<{
             key={index}
             className={`minecraft-inventory-slot text-2xl font-bold transition-all duration-300 ${bgColor} ${textColor} ${scale} ${shadow} shadow-lg`}
             style={{
-              width: '60px',
-              height: '60px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '3px solid #8B4513',
-              borderRadius: '6px',
+              width: "60px",
+              height: "60px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "3px solid #8B4513",
+              borderRadius: "6px",
             }}
           >
             <span className="font-minecraft">{item.character}</span>
           </div>
         );
       })}
-    </div>
-  );
-};
-
-const RainDisplay: React.FC<{
-  character: string;
-  errorFlash: boolean;
-}> = ({ character, errorFlash }) => {
-  return (
-    <div className="relative h-64 overflow-hidden">
-      {/* Fallender Charakter */}
-      <div
-        className={`absolute transition-all duration-1000 ease-linear ${
-          errorFlash ? 'text-red-500' : 'text-green-400'
-        }`}
-        style={{
-          left: '50%',
-          transform: 'translateX(-50%)',
-          animation: 'rainFall 3s linear infinite',
-          fontSize: '3rem',
-          fontWeight: 'bold',
-        }}
-      >
-        {character}
-      </div>
-
-      {/* Zielbereich */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-20 minecraft-inventory-slot bg-emerald-600 flex items-center justify-center text-white font-bold text-xl">
-        ⚡
-      </div>
-
-      <style jsx>{`
-        @keyframes rainFall {
-          0% {
-            top: -20px;
-          }
-          100% {
-            top: 200px;
-          }
-        }
-      `}</style>
     </div>
   );
 };
@@ -188,7 +148,7 @@ const RhythmDisplay: React.FC<{
           <div
             className="h-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse"
             style={{
-              animation: 'rhythmPulse 1s ease-in-out infinite',
+              animation: "rhythmPulse 1s ease-in-out infinite",
             }}
           />
         </div>
@@ -198,18 +158,18 @@ const RhythmDisplay: React.FC<{
       <div
         className={`minecraft-inventory-slot text-4xl font-bold transition-all duration-200 mx-auto ${
           errorFlash
-            ? 'bg-red-500 shadow-red-500/50'
-            : 'bg-gradient-to-br from-purple-500 to-blue-600 shadow-purple-500/50'
+            ? "bg-red-500 shadow-red-500/50"
+            : "bg-gradient-to-br from-purple-500 to-blue-600 shadow-purple-500/50"
         } shadow-lg`}
         style={{
-          width: '120px',
-          height: '120px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '3px solid #8B4513',
-          borderRadius: '8px',
-          animation: 'rhythmBeat 1s ease-in-out infinite',
+          width: "120px",
+          height: "120px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "3px solid #8B4513",
+          borderRadius: "8px",
+          animation: "rhythmBeat 1s ease-in-out infinite",
         }}
       >
         <span className="text-white drop-shadow-lg font-minecraft">
@@ -219,7 +179,8 @@ const RhythmDisplay: React.FC<{
 
       <style jsx>{`
         @keyframes rhythmPulse {
-          0%, 100% {
+          0%,
+          100% {
             width: 0%;
           }
           50% {
@@ -228,7 +189,8 @@ const RhythmDisplay: React.FC<{
         }
 
         @keyframes rhythmBeat {
-          0%, 100% {
+          0%,
+          100% {
             transform: scale(1);
           }
           50% {
@@ -246,6 +208,7 @@ export const CharacterDisplay: React.FC<CharacterDisplayProps> = ({
   displayMode,
   errorFlash,
   particleEffect,
+  isActive,
 }) => {
   const renderDisplay = () => {
     switch (displayMode) {
@@ -260,26 +223,12 @@ export const CharacterDisplay: React.FC<CharacterDisplayProps> = ({
 
       case PracticeDisplayMode.Sequence:
         return (
-          <SequenceDisplay
-            sequence={currentSequence}
-            errorFlash={errorFlash}
-          />
-        );
-
-      case PracticeDisplayMode.Rain:
-        return (
-          <RainDisplay
-            character={currentCharacter}
-            errorFlash={errorFlash}
-          />
+          <SequenceDisplay sequence={currentSequence} errorFlash={errorFlash} />
         );
 
       case PracticeDisplayMode.Rhythm:
         return (
-          <RhythmDisplay
-            character={currentCharacter}
-            errorFlash={errorFlash}
-          />
+          <RhythmDisplay character={currentCharacter} errorFlash={errorFlash} />
         );
 
       default:
@@ -308,10 +257,11 @@ export const CharacterDisplay: React.FC<CharacterDisplayProps> = ({
       {/* Instruktionen */}
       <div className="text-center mt-6">
         <p className="text-sm minecraft-text text-gray-300">
-          {displayMode === PracticeDisplayMode.Sequence && "Tippe die Sequenz von links nach rechts"}
-          {displayMode === PracticeDisplayMode.Rain && "Fange den fallenden Buchstaben ab!"}
+          {displayMode === PracticeDisplayMode.Sequence &&
+            "Tippe die Sequenz von links nach rechts"}
           {displayMode === PracticeDisplayMode.Rhythm && "Folge dem Rhythmus"}
-          {displayMode === PracticeDisplayMode.Single && "Tippe das hervorgehobene Zeichen"}
+          {displayMode === PracticeDisplayMode.Single &&
+            "Tippe das hervorgehobene Zeichen"}
         </p>
       </div>
     </div>

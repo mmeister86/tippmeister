@@ -53,13 +53,15 @@ export const PracticeArea: React.FC = () => {
         {views.map((view) => (
           <button
             key={view.key}
-            onClick={() => !view.disabled && setCurrentView(view.key as PracticeView)}
+            onClick={() =>
+              !view.disabled && setCurrentView(view.key as PracticeView)
+            }
             className={`minecraft-button px-4 py-2 transition-all ${
               currentView === view.key
-                ? 'emerald shadow-emerald-500/50'
+                ? "emerald shadow-emerald-500/50"
                 : view.disabled
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-gray-600'
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-600"
             }`}
             disabled={view.disabled}
           >
@@ -141,19 +143,27 @@ export const PracticeArea: React.FC = () => {
             {isActive && (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="minecraft-inventory-slot bg-gradient-to-br from-yellow-500 to-orange-600 p-3 text-center">
-                  <div className="text-xl font-bold text-white">{stats.wpm}</div>
+                  <div className="text-xl font-bold text-white">
+                    {stats.wpm}
+                  </div>
                   <div className="text-xs text-gray-200">WPM</div>
                 </div>
                 <div className="minecraft-inventory-slot bg-gradient-to-br from-green-500 to-emerald-600 p-3 text-center">
-                  <div className="text-xl font-bold text-white">{stats.accuracy.toFixed(1)}%</div>
+                  <div className="text-xl font-bold text-white">
+                    {stats.accuracy.toFixed(1)}%
+                  </div>
                   <div className="text-xs text-gray-200">Genauigkeit</div>
                 </div>
                 <div className="minecraft-inventory-slot bg-gradient-to-br from-purple-500 to-pink-600 p-3 text-center">
-                  <div className="text-xl font-bold text-white">{stats.charactersTyped}</div>
+                  <div className="text-xl font-bold text-white">
+                    {stats.charactersTyped}
+                  </div>
                   <div className="text-xs text-gray-200">Zeichen</div>
                 </div>
                 <div className="minecraft-inventory-slot bg-gradient-to-br from-orange-500 to-red-600 p-3 text-center">
-                  <div className="text-xl font-bold text-white">{stats.streak}</div>
+                  <div className="text-xl font-bold text-white">
+                    {stats.streak}
+                  </div>
                   <div className="text-xs text-gray-200">Serie</div>
                 </div>
               </div>
@@ -166,6 +176,7 @@ export const PracticeArea: React.FC = () => {
               displayMode={settings.displayMode}
               errorFlash={errorFlash}
               particleEffect={particleEffect}
+              isActive={isActive}
             />
 
             {/* Tastatur */}
@@ -183,21 +194,24 @@ export const PracticeArea: React.FC = () => {
                 </h3>
                 <div className="space-y-2 text-sm minecraft-text text-gray-300">
                   <p>
-                    <strong>Modus:</strong> {
-                      settings.mode === 'letters' ? '🔤 Nur Buchstaben' :
-                      settings.mode === 'letters-numbers' ? '🔢 Buchstaben + Zahlen' :
-                      settings.mode === 'german' ? '🇩🇪 Deutsch mit Umlauten' :
-                      settings.mode === 'minecraft' ? '⚡ Gaming-Zeichen' :
-                      '🎯 Vollständiger Zeichensatz'
-                    }
+                    <strong>Modus:</strong>{" "}
+                    {settings.mode === "letters"
+                      ? "🔤 Nur Buchstaben"
+                      : settings.mode === "letters-numbers"
+                      ? "🔢 Buchstaben + Zahlen"
+                      : settings.mode === "german"
+                      ? "🇩🇪 Deutsch mit Umlauten"
+                      : settings.mode === "minecraft"
+                      ? "⚡ Gaming-Zeichen"
+                      : "🎯 Vollständiger Zeichensatz"}
                   </p>
                   <p>
-                    <strong>Anzeige:</strong> {
-                      settings.displayMode === 'single' ? '📱 Einzelzeichen' :
-                      settings.displayMode === 'sequence' ? '📊 Sequenz' :
-                      settings.displayMode === 'rain' ? '🌧 Zeichenregen' :
-                      '🎵 Rhythmus'
-                    }
+                    <strong>Anzeige:</strong>{" "}
+                    {settings.displayMode === "single"
+                      ? "📱 Einzelzeichen"
+                      : settings.displayMode === "sequence"
+                      ? "📊 Sequenz"
+                      : "🎵 Rhythmus"}
                   </p>
                   <p>
                     <strong>Geschwindigkeit:</strong> {settings.speed}x
@@ -255,9 +269,7 @@ export const PracticeArea: React.FC = () => {
       {renderViewSelector()}
 
       {/* Content */}
-      <main className="minecraft-panel minecraft-text">
-        {renderContent()}
-      </main>
+      <main className="minecraft-panel minecraft-text">{renderContent()}</main>
 
       {/* Action Buttons */}
       {renderActionButtons()}
@@ -271,7 +283,9 @@ export const PracticeArea: React.FC = () => {
           <ul className="text-sm minecraft-text text-gray-300 space-y-1">
             <li>• Konzentriere dich auf Genauigkeit vor Geschwindigkeit</li>
             <li>• Verwende alle 10 Finger für optimale Effizienz</li>
-            <li>• Schaue nicht auf die Tastatur - vertraue dem Muskelgedächtnis</li>
+            <li>
+              • Schaue nicht auf die Tastatur - vertraue dem Muskelgedächtnis
+            </li>
             <li>• Mache regelmäßig Pausen, um Ermüdung zu vermeiden</li>
             <li>• Übe täglich für beste Ergebnisse</li>
           </ul>
